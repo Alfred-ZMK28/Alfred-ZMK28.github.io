@@ -238,7 +238,7 @@ body::before {
   .flower__text {
     top: 50%;
     left: 50%;
-    font-size: 2rem; /* Adjusted font size for mobile */
+    font-size: 1rem; /* Adjusted font size for mobile */
     width: 90%; /* Adjusted width for better fit */
   }
 }
