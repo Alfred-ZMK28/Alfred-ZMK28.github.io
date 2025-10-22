@@ -3,12 +3,91 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bouquet for</title>
-    <link rel="stylesheet" href="src/styles/style.css" />
+    <title>Bouquet Demo - Dynamic Text System</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Demo controls styling */
+      .demo-controls {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        color: white;
+        font-family: Arial, sans-serif;
+        max-width: 300px;
+        z-index: 1000;
+      }
+      
+      .demo-controls h3 {
+        margin-top: 0;
+        color: #ff6b6b;
+      }
+      
+      .demo-controls button {
+        background: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        margin: 4px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 12px;
+      }
+      
+      .demo-controls button:hover {
+        background: #ff5252;
+      }
+      
+      .demo-controls input {
+        width: 100%;
+        padding: 8px;
+        margin: 8px 0;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
+      
+      .demo-controls label {
+        display: block;
+        margin-top: 10px;
+        font-size: 14px;
+      }
+    </style>
   </head>
   <body class="not-loaded">
     <div class="night"></div>
-    <div class="flower__text">Flowers for Thazin</div>
+    <div class="flower__text">Beautiful Flowers</div>
+    
+    <!-- Demo Controls -->
+    <div class="demo-controls">
+      <h3>🌸 Text Demo Controls</h3>
+      
+      <label>Occasion:</label>
+      <button onclick="setOccasion('birthday', 'Sarah')">🎂 Birthday</button>
+      <button onclick="setOccasion('valentine', 'My Love')">💖 Valentine</button>
+      <button onclick="setOccasion('anniversary', 'Darling')">💍 Anniversary</button>
+      <button onclick="setOccasion('mothers-day', 'Mom')">👩 Mother's Day</button>
+      <button onclick="setOccasion('appreciation')">🙏 Thank You</button>
+      
+      <label for="customMessage">Custom Message:</label>
+      <input type="text" id="customMessage" placeholder="Enter your message..." />
+      
+      <label for="customRecipient">Recipient (optional):</label>
+      <input type="text" id="customRecipient" placeholder="Enter recipient name..." />
+      
+      <button onclick="setCustomText()">✨ Apply Custom Text</button>
+      
+      <hr style="margin: 15px 0; border-color: #444;" />
+      
+      <button onclick="hideText()">👁️ Hide Text</button>
+      <button onclick="showText()">👁️ Show Text</button>
+      
+      <p style="font-size: 12px; margin-top: 15px; color: #ccc;">
+        💡 Try different occasions and custom messages!
+      </p>
+    </div>
+
     <div class="flowers">
       <!-- Flower 1 -->
       <div class="flower flower--1">
@@ -211,6 +290,39 @@
       </div>
     </div>
 
-    <script type="module" src="dist/main.js"></script>
+    <script type="module" src="main.js"></script>
+    <script>
+      // Demo functions for the control panel
+      function setOccasion(occasion, recipient) {
+        if (window.flowerController && window.Occasion) {
+          window.flowerController.setOccasionText(window.Occasion[occasion.toUpperCase().replace('-', '_')], recipient);
+        }
+      }
+      
+      function setCustomText() {
+        const message = document.getElementById('customMessage').value;
+        const recipient = document.getElementById('customRecipient').value;
+        
+        if (message && window.flowerController) {
+          window.flowerController.updateBouquetText({
+            message: message,
+            recipient: recipient || undefined,
+            showAnimation: true
+          });
+        }
+      }
+      
+      function hideText() {
+        if (window.flowerController) {
+          window.flowerController.hideText();
+        }
+      }
+      
+      function showText() {
+        if (window.flowerController) {
+          window.flowerController.showText();
+        }
+      }
+    </script>
   </body>
 </html>

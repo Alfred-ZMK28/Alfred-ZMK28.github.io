@@ -1,0 +1,31 @@
+{
+  "name": "bouquet-for-typescript",
+  "version": "1.0.0",
+  "description": "A TypeScript project for an animated flower bouquet",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npm run lint && tsc && cp src/styles/style.css dist/",
+    "dev": "npm run build && tsc --watch",
+    "serve": "npx http-server dist -p 3000",
+    "start": "npm run build && npm run serve",
+    "clean": "rm -rf dist/*.js dist/*.d.ts dist/*.js.map",
+    "dev:serve": "npm run build && (npm run serve & tsc --watch)",
+    "lint": "biome check src/",
+    "lint:fix": "biome check --write src/",
+    "format": "biome format --write src/"
+  },
+  "keywords": [
+    "typescript",
+    "animation",
+    "flowers",
+    "css"
+  ],
+  "author": "Alfred-ZMK28",
+  "license": "MIT",
+  "devDependencies": {
+    "@biomejs/biome": "^2.2.6",
+    "@types/node": "^20.8.0",
+    "http-server": "^14.1.1",
+    "typescript": "^5.2.0"
+  }
+}
