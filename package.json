@@ -4,12 +4,12 @@
   "description": "A TypeScript project for an animated flower bouquet",
   "main": "dist/index.js",
   "scripts": {
-    "build": "npm run lint && tsc && cp src/styles/style.css dist/",
-    "dev": "npm run build && tsc --watch",
-    "serve": "npx http-server dist -p 3000",
-    "start": "npm run build && npm run serve",
-    "clean": "rm -rf dist/*.js dist/*.d.ts dist/*.js.map",
-    "dev:serve": "npm run build && (npm run serve & tsc --watch)",
+  "build": "npm run lint && tsc && cp src/styles/style.css docs/ && cp index.html docs/",
+  "dev": "npm run build && tsc --watch",
+  "serve": "npx http-server docs -p 3000",
+  "start": "npm run build && npm run serve",
+  "clean": "rm -rf docs/*.js docs/*.d.ts docs/*.js.map",
+  "dev:serve": "npm run build && (npm run serve & tsc --watch)",
     "lint": "biome check src/",
     "lint:fix": "biome check --write src/",
     "format": "biome format --write src/"
